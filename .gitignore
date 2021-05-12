@@ -2,8 +2,7 @@ learn.py
 reader.py
 testing.py
 user.py
-*.swift
 .env
 *.egg-info
-bin
 dist
+creache/__pycache__

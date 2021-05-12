@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import asyncio
 import re
 
 
@@ -37,33 +36,35 @@ def main(file: str):
     ]
 
     current_types = [
-        re.search("(var\s+\w+\W+(?P<type>\w+)(?P<optional>!?))", t)
+        re.search(r"(var\s+\w+\W+(?P<type>\w+)(?P<optional>!?))", t)
         for t in regex_var_contents
     ]
 
     for i in range(len(swift_contents)):
-        if re.search("^(struct\s+(\w+))", swift_contents[i]):
-            name = re.search("^struct\s+(?P<name>\w+)", swift_contents[i]).group("name")
+        if re.search(r"^(struct\s+(\w+))", swift_contents[i]):
+            name = re.search(r"^struct\s+(?P<name>\w+)", swift_contents[i]).group(
+                "name"
+            )
             substitute = re.sub(name, f"{name}_Entity", swift_contents[i])
             swift_contents[i] = substitute
 
-        if re.search("var", swift_contents[i]):
+        if re.search(r"var", swift_contents[i]):
             substitute = re.sub("var", "@dynamic var", swift_contents[i])
             swift_contents[i] = substitute
 
-        if re.search("(var\s+\w+\W+(?P<type>\w+)(?P<optional>!?))", swift_contents[i]):
+        if re.search(r"(var\s+\w+\W+(?P<type>\w+)(?P<optional>!?))", swift_contents[i]):
             typed = re.search(
-                "(var\s+\w+\W+(?P<type>\w+)(?P<optional>!?))", swift_contents[i]
+                r"(var\s+\w+\W+(?P<type>\w+)(?P<optional>!?))", swift_contents[i]
             )
             substitute = re.sub(
-                "(?<=:\s)(\w+)(!?)",
+                r"(?<=:\s)(\w+)(!?)",
                 eval_type(typed.group("type")),
                 swift_contents[i],
             )
             swift_contents[i] = substitute
 
     refactored = re.findall(
-        "^struct.*|^\s+@dynamic var.*|\s^}$", "\n".join(swift_contents), re.M
+        r"^struct.*|^\s+@dynamic var.*|\s^}$", "\n".join(swift_contents), re.M
     )
 
     with open("./User_Entity.swift", "w") as f:
