@@ -10,10 +10,10 @@ def step_impl(context):
 
 @when("we convert the file")
 def step_impl(context):
-    creache.run(file="./sample/User.swift")
+    creache.run(file="./features/sample/User.swift")
     pass
 
 
 @then("it creates a new file")
 def step_impl(context):
-    assert os.path.exists("./sample/User_Entity.swift")
+    assert os.path.exists("./User_Entity.swift")
