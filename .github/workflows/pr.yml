@@ -38,8 +38,6 @@ jobs:
         run: ./increment_version --increment
 
       - name: Update resources
-        uses: test-room-7/action-update-file@v1
+        uses: EndBug/add-and-commit@v7
         with:
-          file-path: ./.version
-          commit-msg: Update resources
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          add: ".version"
