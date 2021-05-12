@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: pipenv install --dev --system
 
+      - name: Install behave
+        run: pip install behave
+
       - name: Run tests
         run: |
           pipenv run tests
