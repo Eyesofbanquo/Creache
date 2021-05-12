@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+import sys
+from colorama import Fore, Style, init
+
+init()
+
+# Load the .version file
+
+with open("./.version", "r") as f:
+    variables = f.readlines()
+    version = float(variables[0])
+
+error_text = f"Please use either {Fore.GREEN}'identify' {Style.RESET_ALL}, {Fore.GREEN}'increment'{Style.RESET_ALL}, {Fore.GREEN}'--increment-by x'{Style.RESET_ALL} with this script."
+
+
+def canRunScript():
+    if len(sys.argv) == 1:
+        print(error_text)
+        return False
+    else:
+        return True
+
+
+def handleArguments():
+    if sys.argv[1] == "--identify" and len(sys.argv) == 2:
+        print("version %s" % variables[0])
+    elif sys.argv[1] == "--increment" and len(sys.argv) == 2:
+        new_version = version + 0.1
+        print("Updated to version: %s!" % new_version)
+    elif sys.argv[1] == "--increment-by" and len(sys.argv) == 3:
+        try:
+            float_value = float(sys.argv[2])
+            new_version = version + float_value
+            print("Updated to version: %s!" % new_version)
+        except:
+            print("Unable to increment version number")
+    else:
+        print(error_text)
+
+
+if canRunScript():
+    handleArguments()

@@ -12,7 +12,9 @@ def main():
     "--file", "-f", help="The Swift file you'd like to convert", type=click.Path()
 )
 def convert(file: str):
-
+    """
+    This is used to convert a swift file containing a struct into a struct that can be used with Realm Swift.
+    """
     file = click.prompt(
         "Please enter the path to the file you'd like to convert", default=file
     )

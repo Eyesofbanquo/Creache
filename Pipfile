@@ -7,6 +7,9 @@ name = "pypi"
 click = "*"
 requests = "*"
 python-dotenv = "*"
+simple-chalk = "*"
+termcolor = "*"
+colorama = "*"
 
 [dev-packages]
 
