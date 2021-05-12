@@ -5,11 +5,11 @@ import os
 @fixture
 def cleanup(context, timeout=30, **kwargs):
     print("yike")
-    with open("./User.swift", "r") as f:
+    with open("./sample/User.swift", "r") as f:
         exists = True
     yield exists
 
-    os.remove("User_Entity.swift")
+    os.remove("./sample/User_Entity.swift")
 
 
 def before_tag(context, tag):
