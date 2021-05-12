@@ -27,11 +27,15 @@ def handleArguments():
         print("version %s" % variables[0])
     elif sys.argv[1] == "--increment" and len(sys.argv) == 2:
         new_version = version + 0.1
+        with open("./.version", "w") as f:
+            f.writelines([f"{new_version}"])
         print("Updated to version: %s!" % new_version)
     elif sys.argv[1] == "--increment-by" and len(sys.argv) == 3:
         try:
             float_value = float(sys.argv[2])
             new_version = version + float_value
+            with open("./.version", "w") as f:
+                f.writelines([f"{new_version}"])
             print("Updated to version: %s!" % new_version)
         except:
             print("Unable to increment version number")
