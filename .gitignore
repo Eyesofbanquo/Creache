@@ -5,5 +5,5 @@ user.py
 *.swift
 .env
 *.egg-info
-bin
 dist
+creache/__pycache__
