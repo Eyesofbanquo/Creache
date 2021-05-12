@@ -23,6 +23,9 @@ jobs:
         with:
           command: install -d # Install all dependencies, including development ones
 
+      - name: Running Shell
+        run: pipenv shell
+
       - name: Run tests
         run: |
           behave
