@@ -18,14 +18,19 @@ jobs:
         with:
           python-version: ${{matrix.python-version}}
 
-      - name: Install dependencies
-        uses: VaultVulp/action-pipenv@v2.0.1
-        with:
-          command: install -d # Install all dependencies, including development ones
-
-      - name: Running Shell
-        run: pipenv shell
-
-      - name: Run tests
+      - name: Install pipenv
         run: |
-          behave
+          python -m pip install --upgrade pipenv wheel
+
+      - id: cache-pipenv
+        uses: actions/cache@v1
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+
+      - name: Install dependencies
+        run: |
+          pipenv install --deploy --dev
+
+      - name: Run Tests
+        run: pipenv run behave
