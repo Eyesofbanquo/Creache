@@ -13,6 +13,8 @@ def eval_type(t: str):
         return f"{t}! = 0.0"
     elif t == "Bool":
         return "Bool! = false"
+    else:
+        return "Any?"
 
 
 def read_file(file: str):
@@ -24,6 +26,13 @@ def read_file(file: str):
 def main(file: str):
     # retrieve array of each line from file
     contents = read_file(file=file)
+
+    retpath = re.findall(r"(\W+\w+)", file)
+
+    full_path = ""
+    for path in retpath:
+        if path != retpath[len(retpath) - 1] and path != retpath[len(retpath) - 2]:
+            full_path = full_path + path
 
     swift_contents = [c for c in contents]
 
@@ -45,7 +54,9 @@ def main(file: str):
             name = re.search(r"^struct\s+(?P<name>\w+)", swift_contents[i]).group(
                 "name"
             )
-            substitute = re.sub(name, f"{name}_Entity", swift_contents[i])
+            substitute = re.sub(
+                f"struct {name}", f"class {name}_Entity", swift_contents[i]
+            )
             swift_contents[i] = substitute
 
         if re.search(r"var", swift_contents[i]):
@@ -64,10 +75,10 @@ def main(file: str):
             swift_contents[i] = substitute
 
     refactored = re.findall(
-        r"^struct.*|^\s+@dynamic var.*|\s^}$", "\n".join(swift_contents), re.M
+        r"^class.*|^\s+@dynamic var.*|\s^}$", "\n".join(swift_contents), re.M
     )
 
-    with open("./User_Entity.swift", "w") as f:
+    with open(f"{full_path}/{name.capitalize()}_Entity.swift", "w") as f:
         f.writelines(refactored)
 
     print("Wrote to User_Entity.swift")

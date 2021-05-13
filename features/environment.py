@@ -9,7 +9,7 @@ def cleanup(context, timeout=30, **kwargs):
         exists = True
     yield exists
 
-    os.remove("./User_Entity.swift")
+    os.remove("./features/sample/User_Entity.swift")
 
 
 def before_tag(context, tag):

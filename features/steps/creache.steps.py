@@ -17,4 +17,4 @@ def step_impl(context):
 
 @then("it creates a new file")
 def step_impl(context):
-    assert_that(os.path.exists("./User_Entity.swift")).is_true()
+    assert_that(os.path.exists("./features/sample/User_Entity.swift")).is_true()
