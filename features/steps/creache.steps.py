@@ -1,4 +1,5 @@
 from behave import *
+from assertpy import assert_that
 import creache
 import os
 
@@ -16,4 +17,4 @@ def step_impl(context):
 
 @then("it creates a new file")
 def step_impl(context):
-    assert os.path.exists("./User_Entity.swift")
+    assert_that(os.path.exists("./User_Entity.swift")).is_true()
