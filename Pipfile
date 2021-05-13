@@ -13,6 +13,7 @@ python-dotenv = "*"
 simple-chalk = "*"
 termcolor = "*"
 colorama = "*"
+assertpy = "*"
 
 [dev-packages]
 
