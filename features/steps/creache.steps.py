@@ -1,6 +1,6 @@
 from behave import *
 from assertpy import assert_that
-import creache
+import src.creache
 import os
 
 
@@ -12,7 +12,7 @@ def step_impl(context, file):
 
 @when("we convert the file")
 def step_impl(context):
-    creache.run(file=f"./features/sample/{context.known_file}.swift")
+    src.creache.run(file=f"./features/sample/{context.known_file}.swift")
 
 
 @then("it creates a new file named {formatted_file}.swift")

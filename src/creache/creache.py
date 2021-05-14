@@ -79,8 +79,11 @@ def main(file: str):
     )
 
     final_name = retpath[len(retpath) - 2].split("_")
+    final_name[0] = final_name[0][1:]
 
     final_name_capitalized = [elem.capitalize() for elem in final_name]
+
+    print(final_name_capitalized)
 
     final_name_capitalized_separated = "_".join(final_name_capitalized)
 
