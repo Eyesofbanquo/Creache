@@ -78,10 +78,20 @@ def main(file: str):
         r"^class.*|^\s+@dynamic var.*|\s^}$", "\n".join(swift_contents), re.M
     )
 
-    with open(f"{full_path}/{name.capitalize()}_Entity.swift", "w") as f:
+    final_name = retpath[len(retpath) - 2].split("_")
+
+    final_name_capitalized = [elem.capitalize() for elem in final_name]
+
+    final_name_capitalized_separated = "_".join(final_name_capitalized)
+
+    final_name_capitalized_separated_path = (
+        f"{full_path}/{final_name_capitalized_separated}_Entity.swift"
+    )
+
+    with open(final_name_capitalized_separated_path, "w") as f:
         f.writelines(refactored)
 
-    print("Wrote to User_Entity.swift")
+    print("Wrote to %s" % final_name_capitalized_separated_path)
 
 
 def run(file: str):
