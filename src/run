@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
 import cli
-import creache
 
 cli.main()

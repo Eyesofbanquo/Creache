@@ -10,10 +10,10 @@ setup(
     author="Markim Shaw",
     author_email="ms79723@gmail.com",
     license="MIT",
-    packages=["creache"],
+    packages=["src.creache", "src.cli"],
     url="https://github.com/Eyesofbanquo/Creache",
     zip_safe=False,
-    scripts=["bin/creache"],
+    scripts=["src/creache/run"],
     install_requires=["click"],
     classifiers=[
         "Development Status :: 3 - Alpha",  # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
