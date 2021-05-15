@@ -1,20 +1,23 @@
 from behave import *
 from assertpy import assert_that
-import creache
+import src.creache
 import os
 
 
-@given("User.swift exists")
-def step_impl(context):
-    pass
+@given("{file} exists")
+def step_impl(context, file):
+    context.known_file = file
+    assert_that(os.path.exists(f"./features/sample/{file}.swift")).is_true()
 
 
 @when("we convert the file")
 def step_impl(context):
-    creache.run(file="./features/sample/User.swift")
-    pass
+    src.creache.run(file=f"./features/sample/{context.known_file}.swift")
 
 
-@then("it creates a new file")
-def step_impl(context):
-    assert_that(os.path.exists("./features/sample/User_Entity.swift")).is_true()
+@then("it creates a new file named {formatted_file}.swift")
+def step_impl(context, formatted_file):
+    context.known_file = formatted_file
+    assert_that(
+        os.path.exists(f"./features/sample/{context.known_file}.swift")
+    ).is_true()

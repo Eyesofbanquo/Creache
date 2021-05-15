@@ -32,7 +32,7 @@ struct User {
 to this
 
 ```swift
-struct User_Entity {
+class User_Entity {
     @dynamic var name: String! = ''
     @dynamic var age: Int! = 0
     @dynamic var isHappy: Bool! = false
