@@ -10,4 +10,4 @@ Feature: Generating files
         Examples: Files
             | file        | formatted_file     |
             | User        | User_Entity        |
-            | UserUnknown | UserUnknown_Entity |
+            | UserUnknown | Userunknown_Entity |
