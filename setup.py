@@ -10,7 +10,7 @@ setup(
     author="Markim Shaw",
     author_email="ms79723@gmail.com",
     license="MIT",
-    packages=["src.creache", "src.cli"],
+    packages=["src.creache", "src.cli", "src.incrementer"],
     url="https://github.com/Eyesofbanquo/Creache",
     zip_safe=False,
     scripts=["src/creache/run"],
