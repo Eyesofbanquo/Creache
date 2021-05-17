@@ -16,7 +16,6 @@ termcolor = "*"
 colorama = "*"
 assertpy = "*"
 pytest = "*"
-local-structure = {editable = true, path = "./src"}
 
 [dev-packages]
 
