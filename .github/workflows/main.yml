@@ -27,6 +27,9 @@ jobs:
       - name: Install behave
         run: pip install behave
 
+      - name: Install local packages
+        run: python -m pip install -e ./src
+
       - name: Run Unit Tests
         run: |
           pipenv run unit_tests
