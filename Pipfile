@@ -5,6 +5,7 @@ name = "pypi"
 
 [scripts]
 tests = "behave"
+unit_tests = "pytest"
 
 [packages]
 click = "*"
@@ -14,6 +15,8 @@ simple-chalk = "*"
 termcolor = "*"
 colorama = "*"
 assertpy = "*"
+pytest = "*"
+local-structure = {editable = true, path = "./src"}
 
 [dev-packages]
 
