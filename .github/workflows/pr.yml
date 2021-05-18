@@ -23,7 +23,7 @@ jobs:
         run: pipenv install --dev --system
 
       - name: Install local packages
-        run: pipenv install -e ./src
+        run: pip install -e ./src
 
       - name: Install behave
         run: pip install behave
